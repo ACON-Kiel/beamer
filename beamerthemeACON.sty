@@ -1,0 +1,207 @@
+% \LaTeX beamer theme with ACON style layout
+%
+% Author: Thomas Meurer <tm@tf.uni-kiel.de>
+% Version history:
+% v0 ... 2016/12/09
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemeACON}[2016/12/09 ACON beamer theme]
+%\PassOptionsToClass{10pt,t}{beamer} %not properly working
+
+\RequirePackage{ifthen}
+
+% ----------------------------------------------------------------------------------
+% PREPARATIONS
+% ----------------------------------------------------------------------------------
+
+\usecolortheme{ACON}
+\usefonttheme{ACON}
+\usefonttheme[onlymath]{serif}
+\renewcommand\sfdefault{cmbr}
+\useinnertheme{ACONboxes}
+\setbeamercolor{aconboxes}{bg=rtgray!40,fg=black}
+\useinnertheme{ACONbullets}
+
+% Address 
+\newcommand{\aconaddress}{
+  Chair of Automatic Control\\
+  Faculty of Engineering\\
+  Kiel University\\[1ex]
+  {http://www.control.tf.uni-kiel.de}
+}
+\newcommand{\contactline}{\structure{Contact data}}
+
+%Language switch
+\newboolean{@usegerman}
+\setboolean{@usegerman}{false}
+%
+\DeclareOption{german}{
+  \renewcommand{\addresstext}{
+    Lehrstuhl f\"ur Regelungstechnik\\
+    Technische Fakult\"at\\
+    Christian--Albrechts--Universit\"at zu Kiel\\[1ex]
+    {http://www.control.tf.uni-kiel.de}
+  }
+  \renewcommand{\contactline}{\structure{Kontaktdaten}}
+  \setboolean{@usegerman}{true}
+}
+
+\ProcessOptions
+
+%Babel
+\ifthenelse{\boolean{@usegerman}}{
+  \RequirePackage[english,ngerman]{babel}
+  \selectlanguage{ngerman}
+}{
+  \RequirePackage[ngerman,english]{babel}
+  \selectlanguage{english}
+}
+
+%Slide size
+\setbeamersize{text margin left=0.5cm, text margin right=0.5cm}
+
+%Enable float counters
+\setbeamertemplate{caption}[numbered]
+
+% ----------------------------------------------------------------------------------
+% TOOLS
+% ----------------------------------------------------------------------------------
+
+%\setbeamerfont{structure}{\series=\sbseries,size={\fontsize{5}{5}}}
+\newcommand{\orange}[1]{\textcolor{rtorange}{#1}}
+\newcommand{\cEmph}[1]{\orange{#1}}
+\newcommand{\bEmph}[1]{\blue{#1}}
+
+%Email for closing
+\def\@pauthoremail{!! ADD AUTHOR EMAIL!!}
+\def\pauthoremail#1{\gdef\@pauthoremail{#1}}
+
+% ----------------------------------------------------------------------------------
+% PRESENTATION THEME
+% ----------------------------------------------------------------------------------
+
+\mode<presentation>
+
+%Title page
+%-----------------------------------------------------------------------------------
+
+\def\footSep{\rule[-2pt]{1pt}{10pt}}
+%
+\setbeamertemplate{title page}{
+  \vspace{-1.2ex}
+  \begin{beamercolorbox}[sep=1em,wd=\paperwidth,ht=3cm,dp=0cm,left]{titlehead}
+    {\flushleft
+      \usebeamerfont{title} {\huge \inserttitle}}
+    {\flushleft
+      \usebeamerfont{subtitle} {\insertsubtitle}}
+  \end{beamercolorbox}
+  %
+  \begin{beamercolorbox}[sep=1em,wd=\paperwidth,ht=4.95cm,dp=1cm,left]{titlecontent}
+    %
+    \usebeamerfont{author}\insertauthor\\[2ex]
+    \usebeamerfont{institute}\insertinstitute\\[0.5ex]
+    \insertdate
+    % 
+    \unitlength1cm
+    \begin{picture}(0,0)
+      \put(7,-1.35){\pgfimage[height=3.5cm]{tf-siegel}}
+    \end{picture}
+    %
+  \end{beamercolorbox}
+  %
+  \begin{beamercolorbox}[wd=\paperwidth,ht=0.405cm]{titlefoot}
+    \usebeamerfont{titlefoot}
+    \begin{minipage}[t]{0.32\paperwidth}
+      \begin{center} Chair of Automatic Control\phantom{\rule[-5pt]{1pt}{11pt}} \end{center}
+    \end{minipage}
+    \footSep
+    \begin{minipage}[t]{0.32\paperwidth}
+      \begin{center} www.control.tf.uni-kiel.de \end{center}
+    \end{minipage}
+    \footSep
+    \begin{minipage}[t]{0.32\paperwidth}
+      \begin{center} Kiel University \end{center}
+    \end{minipage}
+    %
+  \end{beamercolorbox}
+}
+
+%Frames
+%-----------------------------------------------------------------------------------
+
+
+{\usebeamercolor{acon@decorations}}
+%
+\setbeamertemplate{headline}[text line]{%
+  \vbox{\vskip0.75cm
+    \insertvrule{1pt}{acon@decorations.fg}%
+    \vskip-0.75cm}
+}
+%\setbeamerfont{frametitle}{size=\Large}
+
+\def\framesubtitlefont{\usefont{T1}{cmbr}{bx}{n}\fontsize{11}{11}\selectfont}
+
+\newdimen\acon@ypos
+\newbox\acon@mybox
+\setbeamertemplate{frametitle}{%
+  \setbox\acon@mybox\hbox{\normalsize x}
+  \acon@ypos=\ht\acon@mybox
+  %\multiply \acon@ypos by 2
+  \advance \acon@ypos by -0.25cm
+  \raisebox{\acon@ypos}[0cm][1cm]{{\insertframetitle}}\\
+  %\advance \acon@ypos by -0.5cm
+  \raisebox{0cm}[0cm][1cm]{{\framesubtitlefont\textcolor{black}{\insertframesubtitle}}}
+  \vspace{-1.25cm}
+}
+
+%Footer
+%-----------------------------------------------------------------------------------
+
+\def\footfont{\usefont{T1}{cmbr}{sb}{n}\fontsize{5}{5}\selectfont}
+\def\sep{~~\rule[-0.4ex]{0.4pt}{5pt}~~}
+
+% the default contents of footline
+\newlength{\pagenum}
+\settowidth{\pagenum}{\inserttotalframenumber}
+
+\newcommand{\acon@footline}{%
+  %\usebeamerfont{structure}
+  \footfont 
+  Page \parbox{\pagenum}{\insertframenumber}\sep\insertshortauthor\sep\insertshorttitle
+}
+
+% don't show navigation buttons
+\setbeamertemplate{navigation symbols}{}
+
+\setbeamertemplate{footline}{%
+  %\usebeamerfont{structure}
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1.5ex]{acon@ftcolor}%
+    \Tiny\hspace{0.5cm}\acon@footline%\hfill
+    %\insertslidenavigationsymbol%
+    %\insertframenavigationsymbol%
+    %\insertsubsectionnavigationsymbol%
+    %\insertsectionnavigationsymbol%
+    %\insertdocnavigationsymbol%
+    %\insertbackfindforwardnavigationsymbol%
+  \end{beamercolorbox}}
+
+% The user can override the default \acon@footline by \setfootline{whatever}
+\newcommand{\setfootline}[1]{\renewcommand{\acon@footline}{#1}}
+
+%Closing
+%-----------------------------------------------------------------------------------
+\newcommand{\ClosingSlide}{%
+  \setfootline{}
+  \begin{frame}{}
+    \vfill
+    {\usebeamerfont{title}\blue{\inserttitle}}
+    \vfill 
+    \contactline\\[1ex]
+    \insertauthor\\[1ex]
+    \aconaddress\\
+    \@pauthoremail
+    \vfill
+  \end{frame}}
+%
+
+\mode<all>

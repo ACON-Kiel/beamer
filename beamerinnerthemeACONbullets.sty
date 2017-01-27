@@ -1,0 +1,57 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerinnerthemeACONbullets}[2016/12/09 ACON beamer theme]
+% Author: Thomas Meurer <tm@tf.uni-kiel.de>
+% Version history:
+% v0 ... 2016/12/09
+
+\mode<presentation>
+
+\RequirePackage{pgfcomp-version-0-65}
+
+% Draws a right-pointing triangle in color #1.
+\newcommand{\acon@filledTriangle}[1]{%
+  %\pgfmoveto{\pgfxy(0,-1)}
+  %\pgflineto{\pgfxy(0,0)}
+  %\pgflineto{\pgfxy(1,0)}
+  %\pgfmoveto{\pgfxy(1,0)}
+  %\pgflineto{\pgfxy(-1,0)}
+  %\pgflineto{\pgfxy(1,-1)}
+  %\pgfclosepath
+  \color{#1}
+  \pgfrect[fill]{\pgfpoint{0}{-1}}{\pgfpoint{3}{3}}
+  }
+
+% Draws three overlapping triangles to achieve a shadow effect.
+% The non-shadow trangle is drawn in color #1.
+\newcommand{\acon@tribullets}[1]{{       % two braces to localize \pgfsetxvec
+  \pgfsetxvec{\pgfpoint{0.75ex}{0pt}}   % x-scale
+  \pgfsetyvec{\pgfpoint{0pt}{0.75ex}}   % y-scale
+  \begin{pgfpicture}{-0.1ex}{-0.6ex}{1.2ex}{-0.6ex}  % clipping
+    \pgftranslateto{\pgfxy(0.15,-.30)}
+    %\pgftranslateto{\pgfxy(-0.05,.10)}\acon@filledTriangle{black!20!bg}
+    %\pgftranslateto{\pgfxy(-0.05,.10)}\acon@filledTriangle{black!75!bg}
+    \pgftranslateto{\pgfxy(-0.05,.10)}\acon@filledTriangle{#1}
+  \end{pgfpicture}}}
+
+% hook to let user change the tribullets colors for enumi, enumii, enumiii
+\newcommand{\acontribulletscolors}[3]{%
+  \def\acon@tribulletscoli{#1}
+  \def\acon@tribulletscolii{#2}
+  \def\acon@tribulletscoliii{#3}
+}
+
+% set default colors for enumi, enumii, enumiii
+\acontribulletscolors{rtblue}{rtgray}{rtblue!40!rtgray}
+
+\defbeamertemplate{itemize item}{acontribullets}{%
+  \acon@tribullets{\acon@tribulletscoli}}
+
+\defbeamertemplate{itemize subitem}{acontribullets}{%
+  \small\acon@tribullets{\acon@tribulletscolii}}
+
+\defbeamertemplate{itemize subsubitem}{acontribullets}{
+  \footnotesize\acon@tribullets{\acon@tribulletscoliii}}
+
+\setbeamertemplate{items}[acontribullets]
+
+\mode<all>

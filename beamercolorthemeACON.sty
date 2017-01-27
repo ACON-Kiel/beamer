@@ -1,0 +1,38 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamercolorthemeACON}[2016/12/09 ACON beamer theme]
+% Author: Thomas Meurer <tm@tf.uni-kiel.de>
+% Version history:
+% v0 ... 2016/12/09
+
+\definecolor{rtblue}{rgb}{0.15,0.15,0.7}
+\definecolor{rtgray}{rgb}{0.482,0.482,0.482}
+\definecolor{rtorange}{rgb}{1,0.5,0}
+\newcommand\orange[1]{\textcolor{rtorange}{#1}}
+\newcommand\blue[1]{\textcolor{rtblue}{#1}}
+
+\setbeamercolor{titlehead}{bg=rtblue,fg=white}
+\setbeamercolor{titlefoot}{bg=rtgray,fg=white}
+\setbeamercolor{titlecontent}{bg=white,fg=black}
+
+\setbeamercolor{acon@decorations}{parent=palette primary}
+
+% color definition as in beamerouterthemeinfolines.sty
+\setbeamercolor{acon@ftcolor}{parent=palette secondary}
+
+\setbeamercolor{frametitle}{fg=rtblue}
+%\setbeamerfont{framesubtitle}{series=\bfseries,size={\fontsize{10}{10}}}
+%\setbeamercolor{framesubtitle}{fg=black,bg=black}
+
+\setbeamercolor*{structure}{bg=white,fg=black}
+
+
+\setbeamercolor*{fstructure}{bg=white,fg=rtgray}
+\setbeamercolor*{hstructure}{bg=white,fg=rtblue}
+\setbeamercolor*{palette primary}{use=hstructure,fg=hstructure.fg,bg=hstructure.bg}
+\setbeamercolor*{palette secondary}{use=fstructure,fg=fstructure.fg,bg=fstructure.bg}
+
+%\setbeamercolor{section in head/foot}{bg=Brown}
+\setbeamercolor{shortauthor in foot}{fg=rtgray}
+\setbeamercolor{date in head/foot}{fg=Brown}
+\setbeamercolor{normal text}{fg=black} 
+

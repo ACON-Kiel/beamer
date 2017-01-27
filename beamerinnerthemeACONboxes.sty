@@ -1,0 +1,36 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerinnerthemeACONboxes}[2016/12/09 ACON beamer theme]
+% Author: Thomas Meurer <tm@tf.uni-kiel.de>
+% Version history:
+% v0 ... 2016/12/09
+
+\mode<presentation>
+
+% The default box color.  The user is expected to override this.
+\setbeamercolor{aconboxes}{bg=structure!15!normal text.bg,fg=black}
+
+\newenvironment{displaybox}[1]
+{
+  \centerline\bgroup\hfill
+  \begin{beamerboxesrounded}[lower=aconboxes,shadow=false,width=#1]{}
+}
+{
+  \end{beamerboxesrounded}\hfill\egroup
+}
+
+\newenvironment{onlinebox}[1]
+{
+  \newbox\@mybox
+  \newdimen\@myboxht
+  \setbox\@mybox\hbox\bgroup%
+    \begin{beamerboxesrounded}[lower=aconboxes,shadow=false,width=#1]{}
+  \centering
+}
+{
+  \end{beamerboxesrounded}\egroup
+  \@myboxht\ht\@mybox
+  \raisebox{-0.25\@myboxht}{\usebox\@mybox}\hspace{2pt}
+}
+
+\mode<all>
+
