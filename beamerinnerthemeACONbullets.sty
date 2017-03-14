@@ -43,14 +43,17 @@
 % set default colors for enumi, enumii, enumiii
 \acontribulletscolors{rtblue}{rtgray}{rtblue!40!rtgray}
 
+\defbeamertemplate{itemize begin}{}{%
+  \justifying}
+
 \defbeamertemplate{itemize item}{acontribullets}{%
   \acon@tribullets{\acon@tribulletscoli}}
 
 \defbeamertemplate{itemize subitem}{acontribullets}{%
-  \small\acon@tribullets{\acon@tribulletscolii}}
+  {\small\acon@tribullets{\acon@tribulletscolii}}}
 
 \defbeamertemplate{itemize subsubitem}{acontribullets}{
-  \footnotesize\acon@tribullets{\acon@tribulletscoliii}}
+  {\footnotesize\acon@tribullets{\acon@tribulletscoliii}}}
 
 \setbeamertemplate{items}[acontribullets]
 

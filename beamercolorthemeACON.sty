@@ -5,10 +5,22 @@
 % v0 ... 2016/12/09
 
 \definecolor{rtblue}{rgb}{0.15,0.15,0.7}
-\definecolor{rtgray}{rgb}{0.482,0.482,0.482}
-\definecolor{rtorange}{rgb}{1,0.5,0}
+\definecolor{lskyblue}{rgb}{0.529412,0.807843,0.980392}
+\definecolor{rtgray}{rgb}{0.582,0.582,0.582}
+\definecolor{lrtgray}{rgb}{0.782,0.782,0.782}
+% \definecolor{rtred}{rgb}{0.73,0.07,0.17}
+\definecolor{rtred}{rgb}{0.8,0,0}
+\definecolor{rtviolet}{rgb}{0.9,0.0,0.9}
+\definecolor{rtgreen}{rgb}{0.0,0.8,0.0}
+\definecolor{rtorange}{rgb}{1,0.6,0}
+\definecolor{rtwhite}{rgb}{1,1,1}
 \newcommand\orange[1]{\textcolor{rtorange}{#1}}
 \newcommand\blue[1]{\textcolor{rtblue}{#1}}
+\newcommand\red[1]{\textcolor{rtred}{#1}}
+\newcommand\violet[1]{\textcolor{rtviolet}{#1}}
+\newcommand\green[1]{\textcolor{rtgreen}{#1}}
+\newcommand\gray[1]{\textcolor{rtgray}{#1}}
+\newcommand\white[1]{\textcolor{rtwhite}{#1}}
 
 \setbeamercolor{titlehead}{bg=rtblue,fg=white}
 \setbeamercolor{titlefoot}{bg=rtgray,fg=white}
@@ -25,7 +37,6 @@
 
 \setbeamercolor*{structure}{bg=white,fg=black}
 
-
 \setbeamercolor*{fstructure}{bg=white,fg=rtgray}
 \setbeamercolor*{hstructure}{bg=white,fg=rtblue}
 \setbeamercolor*{palette primary}{use=hstructure,fg=hstructure.fg,bg=hstructure.bg}
@@ -33,6 +44,31 @@
 
 %\setbeamercolor{section in head/foot}{bg=Brown}
 \setbeamercolor{shortauthor in foot}{fg=rtgray}
+\setbeamercolor{shorttitle in foot}{fg=rtgray}
+\setbeamercolor{title in foot}{fg=rtgray}
 \setbeamercolor{date in head/foot}{fg=Brown}
 \setbeamercolor{normal text}{fg=black} 
+
+%Blocks and boxes
+\setbeamercolor{block title}{
+  use={normal text},
+  bg=rtblue %block title.bg!50!normal text.bg
+}
+\setbeamercolor{block body}{
+  use={block title, normal text},
+  bg=lskyblue %block title.bg!50!normal text.bg
+}
+
+\setbeamercolor{block title alerted}{%
+    use={block title, alerted text},
+    bg=block title.bg,
+    fg=alerted text.fg
+}
+\setbeamercolor{block title example}{%
+    use={block title, example text},
+    bg=block title.bg,
+    fg=example text.fg
+}
+\setbeamercolor{block body alerted}{use=block body, parent=block body}
+\setbeamercolor{block body example}{use=block body, parent=block body}
 

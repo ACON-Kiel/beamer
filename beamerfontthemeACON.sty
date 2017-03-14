@@ -7,9 +7,9 @@
 \RequirePackage{cmbright}
 \RequirePackage[T1]{fontenc}
 
-\setbeamerfont{title}{series=\bfseries,size={\fontsize{16}{16}}}
+\setbeamerfont{title}{series=\bfseries,size={\fontsize{19}{19}}}
 \setbeamerfont{subtitle}{series=\bfseries,size={\fontsize{12}{12}}}
-\setbeamerfont{titlefoot}{series=\bfseries,size={\fontsize{8}{8}}}
+\setbeamerfont{titlefoot}{size={\fontsize{8}{8}}}
 \setbeamerfont{author}{size={\fontsize{11}{11}}}
 \setbeamerfont{institute}{size={\fontsize{8}{8}}}
 
@@ -17,4 +17,13 @@
 
 \setbeamerfont{structure}{series=\bfseries}
 
+%Itemize, enumerate
+\setbeamertemplate{itemize/enumerate body begin}{\normalsize}
+\setbeamertemplate{itemize/enumerate subbody begin}{\normalsize}
 
+%Blocks
+\setbeamerfont{block title}{series=\bfseries,size=\normalsize}
+\setbeamerfont{block body}{size=\normalsize}
+\setbeamerfont{block title example}{series=\bfseries,size=\normalsize}
+\setbeamerfont{block body alerted}{size=\normalsize}
+\setbeamerfont{block body example}{size=\normalsize}

@@ -9,6 +9,8 @@
 %\PassOptionsToClass{10pt,t}{beamer} %not properly working
 
 \RequirePackage{ifthen}
+\RequirePackage{marvosym}
+\RequirePackage{ragged2e}
 
 % ----------------------------------------------------------------------------------
 % PREPARATIONS
@@ -27,24 +29,35 @@
   Chair of Automatic Control\\
   Faculty of Engineering\\
   Kiel University\\[1ex]
-  {http://www.control.tf.uni-kiel.de}
+  {\Mundus~http://www.control.tf.uni-kiel.de}
 }
 \newcommand{\contactline}{\structure{Contact data}}
+\newcommand{\footchair}{Automatic Control Chair}
+\newcommand{\footuniv}{Kiel University}
+\newcommand{\mypage}{Page}
 
 %Language switch
 \newboolean{@usegerman}
 \setboolean{@usegerman}{false}
 %
 \DeclareOption{german}{
-  \renewcommand{\addresstext}{
+  \renewcommand{\aconaddress}{
     Lehrstuhl f\"ur Regelungstechnik\\
     Technische Fakult\"at\\
     Christian--Albrechts--Universit\"at zu Kiel\\[1ex]
-    {http://www.control.tf.uni-kiel.de}
+    {\Mundus~http://www.control.tf.uni-kiel.de}
   }
   \renewcommand{\contactline}{\structure{Kontaktdaten}}
+  \renewcommand{\footchair}{Lehrstuhl f\"ur Regelungstechnik}
+  \renewcommand{\footuniv}{Universit\"at Kiel}
+  \renewcommand{\mypage}{Seite}
   \setboolean{@usegerman}{true}
 }
+
+%TF logo
+\newboolean{@usetflogo}
+\setboolean{@usetflogo}{false}
+\DeclareOption{tflogo}{\setboolean{@usegerman}{true}}
 
 \ProcessOptions
 
@@ -68,9 +81,15 @@
 % ----------------------------------------------------------------------------------
 
 %\setbeamerfont{structure}{\series=\sbseries,size={\fontsize{5}{5}}}
-\newcommand{\orange}[1]{\textcolor{rtorange}{#1}}
+\renewcommand{\orange}[1]{\textcolor{rtorange}{#1}}
 \newcommand{\cEmph}[1]{\orange{#1}}
+\newcommand{\ctEmph}[1]{\orange{\textbf{#1}}}
+\newcommand{\tEmph}[1]{\textbf{#1}}
 \newcommand{\bEmph}[1]{\blue{#1}}
+\newcommand{\btEmph}[1]{\blue{\textbf{#1}}}
+
+% Boxes
+\newcommand{\Efbox}[1]{\fcolorbox{rtwhite}{rtgray!40}{#1}}
 
 %Email for closing
 \def\@pauthoremail{!! ADD AUTHOR EMAIL!!}
@@ -89,30 +108,34 @@
 %
 \setbeamertemplate{title page}{
   \vspace{-1.2ex}
-  \begin{beamercolorbox}[sep=1em,wd=\paperwidth,ht=3cm,dp=0cm,left]{titlehead}
+  \begin{beamercolorbox}[sep=1em,wd=\paperwidth,ht=0.3125\paperheight,dp=0cm,left]{titlehead}
     {\flushleft
-      \usebeamerfont{title} {\huge \inserttitle}}
+      \usebeamerfont{title}{\inserttitle}}
     {\flushleft
-      \usebeamerfont{subtitle} {\insertsubtitle}}
+      \usebeamerfont{subtitle}{\insertsubtitle}}
   \end{beamercolorbox}
   %
-  \begin{beamercolorbox}[sep=1em,wd=\paperwidth,ht=4.95cm,dp=1cm,left]{titlecontent}
+  \begin{beamercolorbox}[sep=1em,wd=\paperwidth,ht=0.515625\paperheight,dp=1cm,left]{titlecontent}
     %
     \usebeamerfont{author}\insertauthor\\[2ex]
-    \usebeamerfont{institute}\insertinstitute\\[0.5ex]
+    \usebeamerfont{institute}\insertinstitute\\[2ex]
     \insertdate
     % 
-    \unitlength1cm
-    \begin{picture}(0,0)
-      \put(7,-1.35){\pgfimage[height=3.5cm]{tf-siegel}}
-    \end{picture}
+    \ifthenelse{\boolean{@usetflogo}}{%
+      \unitlength1cm
+      \begin{picture}(0,0)
+        \put(7.25,-1.4){\pgfimage[height=3.5cm]{figures/tf-siegel}}
+      \end{picture}}
     %
   \end{beamercolorbox}
   %
-  \begin{beamercolorbox}[wd=\paperwidth,ht=0.405cm]{titlefoot}
+  \vfill
+  %
+  \begin{beamercolorbox}[wd=\paperwidth,ht=0.0461875\paperheight]{titlefoot}
     \usebeamerfont{titlefoot}
     \begin{minipage}[t]{0.32\paperwidth}
-      \begin{center} Chair of Automatic Control\phantom{\rule[-5pt]{1pt}{11pt}} \end{center}
+      \begin{center} \footchair\phantom{\rule[-5pt]{1pt}{11pt}} 
+      \end{center}
     \end{minipage}
     \footSep
     \begin{minipage}[t]{0.32\paperwidth}
@@ -120,7 +143,7 @@
     \end{minipage}
     \footSep
     \begin{minipage}[t]{0.32\paperwidth}
-      \begin{center} Kiel University \end{center}
+      \begin{center} \footuniv \end{center}
     \end{minipage}
     %
   \end{beamercolorbox}
@@ -165,9 +188,12 @@
 \settowidth{\pagenum}{\inserttotalframenumber}
 
 \newcommand{\acon@footline}{%
-  %\usebeamerfont{structure}
+  % \usebeamerfont{structure}
   \footfont 
-  Page \parbox{\pagenum}{\insertframenumber}\sep\insertshortauthor\sep\insertshorttitle
+  \mypage~\parbox[t]{\pagenum}{\insertframenumber}\sep\insertshortauthor\sep\insertshorttitle
+}
+\newcommand{\acon@footlogo}{%
+  \lower1.5ex\hbox{\includegraphics[width=1cm]{figures/logo_short}}
 }
 
 % don't show navigation buttons
@@ -176,7 +202,10 @@
 \setbeamertemplate{footline}{%
   %\usebeamerfont{structure}
   \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1.5ex]{acon@ftcolor}%
-    \Tiny\hspace{0.5cm}\acon@footline%\hfill
+    \acon@footlogo%
+    \Tiny\hspace{0.25cm}\acon@footline%\hfill
+    %\hfill
+    %\lower1ex\hbox{\includegraphics[width=1cm]{figures/logo}}\hspace{1ex}
     %\insertslidenavigationsymbol%
     %\insertframenavigationsymbol%
     %\insertsubsectionnavigationsymbol%
@@ -187,10 +216,12 @@
 
 % The user can override the default \acon@footline by \setfootline{whatever}
 \newcommand{\setfootline}[1]{\renewcommand{\acon@footline}{#1}}
+\newcommand{\setfootlogo}[1]{\renewcommand{\acon@footlogo}{#1}}
 
 %Closing
 %-----------------------------------------------------------------------------------
 \newcommand{\ClosingSlide}{%
+  \setfootlogo{}
   \setfootline{}
   \begin{frame}{}
     \vfill
@@ -199,7 +230,7 @@
     \contactline\\[1ex]
     \insertauthor\\[1ex]
     \aconaddress\\
-    \@pauthoremail
+    \Email~\@pauthoremail
     \vfill
   \end{frame}}
 %
