@@ -11,4 +11,4 @@ for presentations from the Chair of Automatic Control at the Kiel University in 
 
 * OSX
   * Clone/Download the repository into your local _texmf/tex/latex/_ folder. For TeX Live this folder is normally located at _~/texmf/tex/latex/_, while for MacTeX the path is given by _~/Library/texmf/tex/latex/_.
-  * Update the database using the _mktexlsr_ or _texhash_ command.
+  * Update the database using the _texhash_ command.
