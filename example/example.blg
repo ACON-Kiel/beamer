@@ -1,0 +1,17 @@
+[0] Config.pm:354> INFO - This is Biber 2.7
+[0] Config.pm:357> INFO - Logfile is 'example.blg'
+[25] biber:303> INFO - === Mo Okt  2, 2017, 16:18:12
+[44] Biber.pm:359> INFO - Reading 'example.bcf'
+[108] Biber.pm:835> INFO - Found 1 citekeys in bib section 0
+[121] Biber.pm:3670> INFO - Processing section 0
+[134] Biber.pm:3840> INFO - Looking for bibtex format file 'example.bib' for section 0
+[135] bibtex.pm:1435> INFO - Decoding LaTeX character macros into UTF-8
+[139] bibtex.pm:1292> INFO - Found BibTeX data source 'example.bib'
+[152] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[152] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[152] Biber.pm:3499> INFO - Sorting list 'none/global/' of type 'entry' with scheme 'none' and locale 'en-US'
+[152] Biber.pm:3505> INFO - No sort tailoring available for locale 'en-US'
+[153] bbl.pm:608> INFO - Writing 'example.bbl' with encoding 'ascii'
+[155] Utils.pm:164> WARN - The entry 'fliess:95' has characters which cannot be encoded in 'ascii'. Recoding problematic characters into macros.
+[156] bbl.pm:712> INFO - Output to example.bbl
+[156] Biber.pm:109> INFO - WARNINGS: 1
