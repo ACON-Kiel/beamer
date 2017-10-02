@@ -24,12 +24,12 @@
 \setbeamercolor{aconboxes}{bg=rtgray!40,fg=black}
 \useinnertheme{ACONbullets}
 
-% Address 
+% Address
 \newcommand{\aconaddress}{
   Chair of Automatic Control\\
   Faculty of Engineering\\
   Kiel University\\[1ex]
-  {\Mundus~http://www.control.tf.uni-kiel.de}
+  {\Mundus~http://www.control.tf.uni-kiel.de}\\
 }
 \newcommand{\contactline}{\structure{Contact data}}
 \newcommand{\footchair}{Automatic Control Chair}
@@ -45,13 +45,31 @@
     Lehrstuhl f\"ur Regelungstechnik\\
     Technische Fakult\"at\\
     Christian--Albrechts--Universit\"at zu Kiel\\[1ex]
-    {\Mundus~http://www.control.tf.uni-kiel.de}
+    {\Mundus~http://www.control.tf.uni-kiel.de}\\
   }
   \renewcommand{\contactline}{\structure{Kontaktdaten}}
   \renewcommand{\footchair}{Lehrstuhl f\"ur Regelungstechnik}
   \renewcommand{\footuniv}{Christian--Albrechts--Universit\"at Kiel}
   \renewcommand{\mypage}{Seite}
   \setboolean{@usegerman}{true}
+}
+
+\DeclareOption{student}{
+  \renewcommand{\aconaddress}{}
+  \renewcommand{\contactline}{\structure{Kontaktdaten}}
+  \renewcommand{\footchair}{Lehrstuhl f\"ur Regelungstechnik}
+  \renewcommand{\footuniv}{Christian--Albrechts--Universit\"at Kiel}
+  \renewcommand{\mypage}{Seite}
+  \setboolean{@usegerman}{true}
+}
+
+\DeclareOption{studenteng}{
+  \renewcommand{\aconaddress}{}
+  \renewcommand{\contactline}{\structure{Contact data}}
+  \renewcommand{\footchair}{Lehrstuhl f\"ur Regelungstechnik}
+  \renewcommand{\footuniv}{Universit\"at Kiel}
+  \renewcommand{\mypage}{Seite}
+  \setboolean{@usegerman}{false}
 }
 
 %TF logo
@@ -184,7 +202,7 @@
     \usebeamerfont{author}\insertauthor\\[2ex]
     \usebeamerfont{institute}\insertinstitute\\[2ex]
     \insertdate
-    % 
+    %
     \ifthenelse{\boolean{@usetflogo}}{%
       \unitlength1cm
       \begin{picture}(0,0)
@@ -263,7 +281,7 @@
 
 \newcommand{\acon@footline}{%
   % \usebeamerfont{structure}
-  \footfont 
+  \footfont
   \mypage~\parbox[t]{\pagenum}{\insertframenumber}\sep\insertshortauthor\sep\insertshorttitle
 }
 \newcommand{\acon@footlogo}{%
@@ -300,10 +318,10 @@
   \begin{frame}{}
     \vfill
     {\usebeamerfont{title}\blue{\inserttitle}}
-    \vfill 
+    \vfill
     \contactline\\[1ex]
     \insertauthor\\[1ex]
-    \aconaddress\\
+    \aconaddress
     \Email~\@pauthoremail
     \vfill
   \end{frame}}
