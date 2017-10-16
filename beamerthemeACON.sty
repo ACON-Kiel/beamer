@@ -49,7 +49,7 @@
   }
   \renewcommand{\contactline}{\structure{Kontaktdaten}}
   \renewcommand{\footchair}{Lehrstuhl f\"ur Regelungstechnik}
-  \renewcommand{\footuniv}{Christian-Albrechts-Universit\"at zu Kiel}
+  \renewcommand{\footuniv}{Christian--Albrechts--Universit\"at Kiel}
   \renewcommand{\mypage}{Seite}
   \setboolean{@usegerman}{true}
 }
@@ -58,7 +58,7 @@
   \renewcommand{\aconaddress}{}
   \renewcommand{\contactline}{\structure{Kontaktdaten}}
   \renewcommand{\footchair}{Lehrstuhl f\"ur Regelungstechnik}
-  \renewcommand{\footuniv}{Christian-Albrechts-Universit\"at zu Kiel}
+  \renewcommand{\footuniv}{Christian--Albrechts--Universit\"at Kiel}
   \renewcommand{\mypage}{Seite}
   \setboolean{@usegerman}{true}
 }
@@ -114,6 +114,70 @@
 \def\pauthoremail#1{\gdef\@pauthoremail{#1}}
 
 % ----------------------------------------------------------------------------------
+% BIBLIOGRAPHY 
+% ----------------------------------------------------------------------------------
+
+% Defines a command \sfcite which enables to add citations but to
+% preserve the citation number throughout the presentation. Citations
+% are placed on the slide, where \sfcite is called. For the standard
+% behavior of citations use \footcite.
+%
+% This also requires to add the following two lines to the main LaTeX
+% source file:
+%
+% \usepackage[style=numeric-comp,citetracker=true,sorting=none]{biblatex}
+% \bibliography{YOURBIBFILES}
+
+%Source: https://tex.stackexchange.com/questions/45406/footnotes-disappear-when-using-overlays-in-beamer
+
+\RequirePackage[style=numeric-comp,citetracker=true,sorting=none]{biblatex}
+
+\newtoggle{cbx@togcite}
+% Citation number in brackets
+\renewcommand\@makefntext[1]{%
+  \iftoggle{cbx@togcite}
+    {{\normalfont[\@thefnmark]}\enspace #1}
+    {{\normalfont\@thefnmark}\enspace #1}%
+  \global\togglefalse{cbx@togcite}}
+
+\DeclareCiteCommand{\sfcite}[\cbx@superscript]%
+{\usebibmacro{cite:init}%
+  \let\multicitedelim=\supercitedelim
+  \iffieldundef{prenote}
+  {}
+  {\BibliographyWarning{Ignoring prenote argument}}%
+  \iffieldundef{postnote}
+  {}
+  {\BibliographyWarning{Ignoring postnote argument}}}
+{\usebibmacro{citeindex}%
+  \ifciteseen
+  {\ifnumequal{\value{page}}{\csuse{cbx@page@\thefield{entrykey}}}
+    {}
+    {\ifnumequal{\value{framenumber}}{\csuse{cbx@frame@\thefield{entrykey}}}
+      {\usebibmacro{sfcite}}
+      {\usebibmacro{sfcite}}}}
+  {\usebibmacro{sfcite}}%
+  \usebibmacro{cite:comp}}
+{}
+{\usebibmacro{cite:dump}}
+
+\newbibmacro*{sfcite}{%
+  \csnumgdef{cbx@page@\thefield{entrykey}}{\value{page}}%
+  \csnumgdef{cbx@frame@\thefield{entrykey}}{\value{framenumber}}%
+  \xappto\cbx@citehook{%
+    \global\toggletrue{cbx@togcite}%
+    \noexpand\footnotetext[\thefield{labelnumber}]{%
+      \fullcite{\thefield{entrykey}}\addperiod}}}
+
+\newrobustcmd{\cbx@superscript}[1]{%
+  \mkbibsuperscript{\mkbibbrackets{#1}}%
+  \cbx@citehook%
+  \global\let\cbx@citehook=\empty}
+
+\let\cbx@citehook=\empty
+
+
+% ----------------------------------------------------------------------------------
 % PRESENTATION THEME
 % ----------------------------------------------------------------------------------
 
@@ -166,6 +230,18 @@
     %
   \end{beamercolorbox}
 }
+
+% Use different color of short title on title and following pages
+\renewcommand\insertshorttitle[1][]{%
+  \beamer@setupshort{#1}%
+  \let\thanks=\@gobble%
+  \ifnum\c@page=1%
+  \hyperlinkpresentationend{\beamer@insertshort{\usebeamercolor*[fg]{title in head/foot}\beamer@shorttitle}}%
+  \else%
+  \hyperlinkpresentationstart{\beamer@insertshort{\usebeamercolor*[fg]{palette
+      secondary}\beamer@shorttitle}}%
+  \fi}
+
 
 %Frames
 %-----------------------------------------------------------------------------------

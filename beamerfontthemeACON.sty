@@ -7,17 +7,22 @@
 \RequirePackage{cmbright}
 \RequirePackage[T1]{fontenc}
 
+%Main font definitions
 \setbeamerfont{title}{series=\bfseries,size={\fontsize{19}{19}}}
 \setbeamerfont{subtitle}{series=\bfseries,size={\fontsize{12}{12}}}
 \setbeamerfont{titlefoot}{series=\bfseries,size={\fontsize{7}{7}}}
-\setbeamerfont{author}{size={\fontsize{11}{11}}}
+\setbeamerfont{author}{size={\fontsize{12}{12}}}
 \setbeamerfont{institute}{size={\fontsize{8}{8}}}
 
 \setbeamerfont{frametitle}{series=\bfseries,size={\fontsize{13}{13}}}
-%\setbeamerfont{framesubtitle}{series=\bfseries,size={\fontsize{13}{13}}}
 \def\framesubtitlefont{\usefont{T1}{cmbr}{bx}{n}\fontsize{11}{11}\selectfont}
 
+%Special font definitions
+\def\smallerfont{\usefont{T1}{cmbr}{n}{n}\fontsize{3}{3}\selectfont}
+\def\medium{\usefont{T1}{cmbr}{n}{n}\fontsize{7}{7}\selectfont}
+
 \setbeamerfont{structure}{series=\bfseries}
+\setbeamerfont{alerted text}{series=\bfseries}
 
 %Itemize, enumerate
 \setbeamertemplate{itemize/enumerate body begin}{\normalsize}
@@ -29,3 +34,4 @@
 \setbeamerfont{block title example}{series=\bfseries,size=\normalsize}
 \setbeamerfont{block body alerted}{size=\normalsize}
 \setbeamerfont{block body example}{size=\normalsize}
+

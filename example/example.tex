@@ -8,6 +8,16 @@
 %\usetheme[german]{ACON} or \usetheme[student]{ACON} or \usetheme[studenteng]{ACON} 
 \usetheme{ACON}
 
+% We define  a command \sfcite which enables to add citations but to
+% preserve the citation number throughout the presentation. Citations
+% are placed on the slide, where \sfcite is called. For the standard
+% behavior of citations use \footcite.
+%
+% This also requires to add the following two lines to the main LaTeX
+% source file:
+%
+\usepackage[style=numeric-comp,citetracker=true,sorting=none]{biblatex}
+\bibliography{example}
 \usepackage{abbreviations} %Provide an abbreviations file if equations
                           %are used
 \usepackage{curve2e}
@@ -133,7 +143,7 @@ This shows the use of an \texttt{inlinebox} environment
   \newcommand{\kasten}{\polyline(0,0)(4,0)(4,3)(0,3)(0,0)}
   %
   \begin{itemize}
-  \item \btEmph{Differenzielle Flachheit} [Fliess et al. '95]
+  \item \btEmph{Differenzielle Flachheit}\sfcite{fliess:95}
     \medskip
     \begin{inlinebox}{0.925\textwidth}
       Ein System $\dot{\xv[]}=\bs{f}(\xv[],\uv[])$ wird \tEmph{differenziell
