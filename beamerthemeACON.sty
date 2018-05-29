@@ -75,7 +75,15 @@
 %TF logo
 \newboolean{@usetflogo}
 \setboolean{@usetflogo}{false}
-\DeclareOption{tflogo}{\setboolean{@usegerman}{true}}
+\DeclareOption{tflogo}{\setboolean{@usetflogo}{true}}
+
+% Other logos
+\newboolean{@useotherlogo}
+\setboolean{@useotherlogo}{false}
+\DeclareOption{otherlogo}{%
+  \def\@setlogo{}
+  \def\setlogo#1{\gdef\@setlogo{#1}}
+  \setboolean{@useotherlogo}{true}}
 
 \ProcessOptions
 
@@ -128,7 +136,7 @@
 % \usepackage[style=numeric-comp,citetracker=true,sorting=none]{biblatex}
 % \bibliography{YOURBIBFILES}
 
-%Source: https://tex.stackexchange.com/questions/45406/footnotes-disappear-when-using-overlays-in-beamer
+% Source: https://tex.stackexchange.com/questions/45406/footnotes-disappear-when-using-overlays-in-beamer
 
 \RequirePackage[style=numeric-comp,citetracker=true,sorting=none]{biblatex}
 
@@ -200,18 +208,19 @@
   \begin{beamercolorbox}[sep=1em,wd=\paperwidth,ht=0.515625\paperheight,dp=1cm,left]{titlecontent}
     %
     \usebeamerfont{author}\insertauthor\\[2ex]
-    \usebeamerfont{institute}\insertinstitute\\[2ex]
-    \insertdate
+    \usebeamerfont{institute}\insertinstitute~\insertdate
     %
     \ifthenelse{\boolean{@usetflogo}}{%
       \unitlength1cm
       \begin{picture}(0,0)
         \put(7.25,-1.4){\pgfimage[height=3.5cm]{figures/tf-siegel}}
       \end{picture}}
+    \ifthenelse{\boolean{@useotherlogo}}{%
+      \smash{\@setlogo}}{}
     %
   \end{beamercolorbox}
   %
-  \vfill
+  \vfill\vspace{1pt}
   %
   \begin{beamercolorbox}[wd=\paperwidth,ht=0.061875\paperheight]{titlefoot}
     \usebeamerfont{titlefoot}
@@ -272,8 +281,8 @@
 %Footer
 %-----------------------------------------------------------------------------------
 
-\def\footfont{\usefont{T1}{cmbr}{sb}{n}\fontsize{5}{5}\selectfont}
-\def\sep{~~\rule[-0.4ex]{0.4pt}{5pt}~~}
+\def\footfont{\usefont{T1}{cmbr}{sb}{n}\fontsize{6}{6}\selectfont}
+\def\sep{~~\rule[-0.4ex]{0.4pt}{6pt}~~}
 
 % the default contents of footline
 \newlength{\pagenum}
@@ -285,7 +294,8 @@
   \mypage~\parbox[t]{\pagenum}{\insertframenumber}\sep\insertshortauthor\sep\insertshorttitle
 }
 \newcommand{\acon@footlogo}{%
-  \lower1.5ex\hbox{\includegraphics[width=1cm]{figures/logo_short}}
+  %\lower1.5ex\hbox{\includegraphics[width=1cm]{figures/logo_short}}
+  \lower1.5ex\hbox{\includegraphics[width=1.25cm,angle=90]{figures/logo_short}}
 }
 
 % don't show navigation buttons
@@ -309,6 +319,20 @@
 % The user can override the default \acon@footline by \setfootline{whatever}
 \newcommand{\setfootline}[1]{\renewcommand{\acon@footline}{#1}}
 \newcommand{\setfootlogo}[1]{\renewcommand{\acon@footlogo}{#1}}
+
+% Sectioning
+% -----------------------------------------------------------------------------------
+% \setbeamerfont{section title}{parent=title}
+% \setbeamercolor{section title}{fg=white,bg=white}
+% \defbeamertemplate{setpart}
+% {
+%   \begin{centering} 
+%     \usebeamerfont{title} 
+   
+%     \par 
+%   \end{centering}
+%   \vfill
+% }
 
 %Closing
 %-----------------------------------------------------------------------------------
