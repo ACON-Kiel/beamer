@@ -11,6 +11,8 @@
 \RequirePackage{ifthen}
 \RequirePackage{marvosym}
 \RequirePackage{ragged2e}
+\RequirePackage{pgfpages}
+\RequirePackage{tikz}
 
 % ----------------------------------------------------------------------------------
 % PREPARATIONS
@@ -35,6 +37,7 @@
 \newcommand{\footchair}{Automatic Control Chair}
 \newcommand{\footuniv}{Kiel University}
 \newcommand{\mypage}{Page}
+\newcommand{\cauLogo}{cau_en}
 
 %Language switch
 \newboolean{@usegerman}
@@ -51,6 +54,7 @@
   \renewcommand{\footchair}{Lehrstuhl f\"ur Regelungstechnik}
   \renewcommand{\footuniv}{Christian--Albrechts--Universit\"at Kiel}
   \renewcommand{\mypage}{Seite}
+  \renewcommand{\cauLogo}{cau_de}
   \setboolean{@usegerman}{true}
 }
 
@@ -195,50 +199,148 @@
 %-----------------------------------------------------------------------------------
 
 \def\footSep{\rule[-2pt]{1pt}{10pt}}
+
+\newcommand{\drawtitlebackground}{%
+  % 
+  \begin{pgfpicture}{0cm}{0cm}{\the\paperwidth}{\the\paperheight}
+    %
+    % Title
+    \pgftext[at=\pgfpoint{0cm}{7.5cm},left,top]{%
+      % 
+      \begin{beamercolorbox}[sep=1em,wd=\paperwidth,ht=0.5\paperheight,%
+        dp=0cm,right]{titletext}
+        {\flushleft
+          \usebeamerfont{title}{\inserttitle}}
+        {\flushleft
+          \usebeamerfont{subtitle}{\insertsubtitle}}
+      \end{beamercolorbox}
+      % 
+    }
+    % 
+    \pgftext[at=\pgfpoint{0cm}{2.6cm},left,top]{%
+      % 
+      \begin{beamercolorbox}[sep=1em,wd=\paperwidth,ht=0.2\paperheight,%
+        dp=0cm,right]{titlecontent}
+        \usebeamerfont{author}\insertauthor\\[1.5ex]
+        \usebeamerfont{institute}\insertinstitute~\insertdate
+      \end{beamercolorbox}
+      % 
+    }
+    %
+    % Illustrations
+    \pgftext[at=\pgfpoint{\the\paperwidth-0.5cm}{\the\paperheight-4.25cm},right,base]{%
+      \includegraphics[height=5.25cm]{tf_siegel}}
+    % 
+    \pgftext[at=\pgfpoint{\the\paperwidth-0.5cm}{\the\paperheight-4.25cm},right,base]{%
+      \includegraphics[height=5.57cm]{cau_hochhaus_opacity}}
+    % 
+    \pgftext[at=\pgfpoint{0cm}{\the\paperheight-4.23cm},left,top]{%
+      % 
+      \begin{beamercolorbox}[sep=1em,wd=\paperwidth,ht=0.05\paperheight,%
+        dp=0cm,left]{titlehead}
+        \vspace{-0.3cm}
+        \mbox{\footchair, \footuniv}
+      \end{beamercolorbox}}
+    % 
+  \end{pgfpicture}
+  % 
+}
+
 %
 \setbeamertemplate{title page}{
-  \vspace{-1.2ex}
-  \begin{beamercolorbox}[sep=1em,wd=\paperwidth,ht=0.3125\paperheight,dp=0cm,left]{titlehead}
-    {\flushleft
-      \usebeamerfont{title}{\inserttitle}}
-    {\flushleft
-      \usebeamerfont{subtitle}{\insertsubtitle}}
-  \end{beamercolorbox}
   %
-  \begin{beamercolorbox}[sep=1em,wd=\paperwidth,ht=0.515625\paperheight,dp=1cm,left]{titlecontent}
-    %
-    \usebeamerfont{author}\insertauthor\\[2ex]
-    \usebeamerfont{institute}\insertinstitute~\insertdate
-    %
-    \ifthenelse{\boolean{@usetflogo}}{%
-      \unitlength1cm
-      \begin{picture}(0,0)
-        \put(7.25,-1.4){\pgfimage[height=3.5cm]{figures/tf-siegel}}
-      \end{picture}}
-    \ifthenelse{\boolean{@useotherlogo}}{%
-      \smash{\@setlogo}}{}
-    %
-  \end{beamercolorbox}
+  \drawtitlebackground
   %
-  \vfill\vspace{1pt}
+  % \begin{beamercolorbox}[sep=1em,wd=\paperwidth,ht=0.3125\paperheight,%
+  %   dp=0cm,left]{titlehead}
+  %   {\flushleft
+  %     \usebeamerfont{title}{\inserttitle}}
+  %   {\flushleft
+  %     \usebeamerfont{subtitle}{\insertsubtitle}}
+  % \end{beamercolorbox}
+  % %
+  % \begin{beamercolorbox}[sep=1em,wd=\paperwidth,ht=0.515625\paperheight,%
+  %   dp=1cm,left]{titlecontent}
+  %   %
+  %   \usebeamerfont{author}\insertauthor\\[2ex]
+  %   \usebeamerfont{institute}\insertinstitute~\insertdate
+  %   %
+  %   \ifthenelse{\boolean{@usetflogo}}{%
+  %     \unitlength1cm
+  %     \begin{picture}(0,0)
+  %       \put(7.25,-1.4){\pgfimage[height=3.5cm]{figures/tf-siegel}}
+  %     \end{picture}}
+  %   \ifthenelse{\boolean{@useotherlogo}}{%
+  %     \smash{\@setlogo}}{}
+  %   %
+  % \end{beamercolorbox}
   %
-  \begin{beamercolorbox}[wd=\paperwidth,ht=0.061875\paperheight]{titlefoot}
-    \usebeamerfont{titlefoot}
-    \begin{minipage}[t]{0.325\paperwidth}
-      \begin{center} \footchair
-      \end{center}
-    \end{minipage}
-    \footSep
-    \begin{minipage}[t]{0.325\paperwidth}
-      \begin{center} www.control.tf.uni-kiel.de \end{center}
-    \end{minipage}
-    \footSep
-    \begin{minipage}[t]{0.325\paperwidth}
-      \begin{center} \footuniv \end{center}
-    \end{minipage}\\[1ex]
-    %
-  \end{beamercolorbox}
+  % \vfill\vspace{1pt}
+  % %
+  % \begin{beamercolorbox}[wd=\paperwidth,ht=0.061875\paperheight]{titlefoot}
+  %   \usebeamerfont{titlefoot}
+  %   \begin{minipage}[t]{0.325\paperwidth}
+  %     \begin{center} \footchair
+  %     \end{center}
+  %   \end{minipage}
+  %   \footSep
+  %   \begin{minipage}[t]{0.325\paperwidth}
+  %     \begin{center} www.control.tf.uni-kiel.de \end{center}
+  %   \end{minipage}
+  %   \footSep
+  %   \begin{minipage}[t]{0.325\paperwidth}
+  %     \begin{center} \footuniv \end{center}
+  %   \end{minipage}\\[1ex]
+  %   %
+  % \end{beamercolorbox}
 }
+
+% \setbeamertemplate{title page}{
+%   \vspace{-1.2ex}
+%   %
+%   \begin{beamercolorbox}[sep=1em,wd=\paperwidth,ht=0.3125\paperheight,%
+%     dp=0cm,left]{titlehead}
+%     {\flushleft
+%       \usebeamerfont{title}{\inserttitle}}
+%     {\flushleft
+%       \usebeamerfont{subtitle}{\insertsubtitle}}
+%   \end{beamercolorbox}
+%   %
+%   \begin{beamercolorbox}[sep=1em,wd=\paperwidth,ht=0.515625\paperheight,%
+%     dp=1cm,left]{titlecontent}
+%     %
+%     \usebeamerfont{author}\insertauthor\\[2ex]
+%     \usebeamerfont{institute}\insertinstitute~\insertdate
+%     %
+%     \ifthenelse{\boolean{@usetflogo}}{%
+%       \unitlength1cm
+%       \begin{picture}(0,0)
+%         \put(7.25,-1.4){\pgfimage[height=3.5cm]{figures/tf-siegel}}
+%       \end{picture}}
+%     \ifthenelse{\boolean{@useotherlogo}}{%
+%       \smash{\@setlogo}}{}
+%     %
+%   \end{beamercolorbox}
+%   %
+%   \vfill\vspace{1pt}
+%   %
+%   \begin{beamercolorbox}[wd=\paperwidth,ht=0.061875\paperheight]{titlefoot}
+%     \usebeamerfont{titlefoot}
+%     \begin{minipage}[t]{0.325\paperwidth}
+%       \begin{center} \footchair
+%       \end{center}
+%     \end{minipage}
+%     \footSep
+%     \begin{minipage}[t]{0.325\paperwidth}
+%       \begin{center} www.control.tf.uni-kiel.de \end{center}
+%     \end{minipage}
+%     \footSep
+%     \begin{minipage}[t]{0.325\paperwidth}
+%       \begin{center} \footuniv \end{center}
+%     \end{minipage}\\[1ex]
+%     %
+%   \end{beamercolorbox}
+% }
 
 % Use different color of short title on title and following pages
 \renewcommand\insertshorttitle[1][]{%
@@ -291,29 +393,25 @@
 \newcommand{\acon@footline}{%
   % \usebeamerfont{structure}
   \footfont
-  \mypage~\parbox[t]{\pagenum}{\insertframenumber}\sep\insertshortauthor\sep\insertshorttitle
+  % \mypage~\parbox[t]{\pagenum}{\insertframenumber}\sep\insertshortauthor\sep\insertshorttitle
+  \insertshortauthor\sep\insertshorttitle\sep\mypage~\parbox[t]{\pagenum}{\insertframenumber}
 }
 \newcommand{\acon@footlogo}{%
-  %\lower1.5ex\hbox{\includegraphics[width=1cm]{figures/logo_short}}
-  \lower1.5ex\hbox{\includegraphics[width=1.25cm,angle=90]{figures/logo_short}}
+  %%\lower1.5ex\hbox{\includegraphics[width=1cm,height=4ex]{figures/logo_short}}
+  %\hspace{6ex}\lower1.2ex\hbox{\includegraphics[width=1.25cm]{figures/logo_short}}
+  %%\lower1.5ex\hbox{\includegraphics[width=1.25cm,angle=90]{figures/logo_short}}
+  %\lower1.5ex\hbox{\includegraphics[width=2.25cm]{figures/\cauLogo}}
 }
 
 % don't show navigation buttons
 \setbeamertemplate{navigation symbols}{}
 
 \setbeamertemplate{footline}{%
-  %\usebeamerfont{structure}
-  \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1.5ex]{acon@ftcolor}%
+  % \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1.5ex]{acon@ftcolor}%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=3ex,dp=1.5ex]{acon@ftcolor}%
     \acon@footlogo%
-    \Tiny\hspace{0.25cm}\acon@footline%\hfill
-    %\hfill
-    %\lower1ex\hbox{\includegraphics[width=1cm]{figures/logo}}\hspace{1ex}
-    %\insertslidenavigationsymbol%
-    %\insertframenavigationsymbol%
-    %\insertsubsectionnavigationsymbol%
-    %\insertsectionnavigationsymbol%
-    %\insertdocnavigationsymbol%
-    %\insertbackfindforwardnavigationsymbol%
+    % \Tiny\hspace{0.25cm}\acon@footline
+    \hfill\Tiny\acon@footline\hspace{0.5cm}
   \end{beamercolorbox}}
 
 % The user can override the default \acon@footline by \setfootline{whatever}
@@ -322,17 +420,19 @@
 
 % Sectioning
 % -----------------------------------------------------------------------------------
-% \setbeamerfont{section title}{parent=title}
-% \setbeamercolor{section title}{fg=white,bg=white}
-% \defbeamertemplate{setpart}
-% {
-%   \begin{centering} 
-%     \usebeamerfont{title} 
-   
-%     \par 
-%   \end{centering}
-%   \vfill
-% }
+\newcommand{\mysection}[1]{%
+  \begingroup
+  \setbeamercolor{background canvas}{bg=rtblue}
+  \setbeamercolor{section title}{fg=white}
+  \section{#1}
+  \begin{frame}[plain]
+    \vfill
+    \centering
+    \usebeamercolor[fg]{section title}\usebeamerfont{section title}#1
+    \vfill
+  \end{frame}
+  \endgroup
+}
 
 %Closing
 %-----------------------------------------------------------------------------------
@@ -341,7 +441,8 @@
   \setfootline{}
   \begin{frame}{}
     \vfill
-    {\usebeamerfont{title}\blue{\inserttitle}}
+    {\usebeamerfont{title}\blue{\inserttitle}}\\[2ex]
+    {\usebeamerfont{subtitle}\blue{\insertsubtitle}}
     \vfill
     \contactline\\[1ex]
     \insertauthor\\[1ex]
