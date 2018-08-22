@@ -211,8 +211,10 @@
         dp=0cm,right]{titletext}
         {\flushleft
           \usebeamerfont{title}{\inserttitle}}
-        {\flushleft
-          \usebeamerfont{subtitle}{\insertsubtitle}}
+        \ifx \insertsubtitle \empty \else
+          {\flushleft
+            \usebeamerfont{subtitle}{\insertsubtitle}}
+        \fi
       \end{beamercolorbox}
       % 
     }
