@@ -1,5 +1,5 @@
 % $ biblatex auxiliary file $
-% $ biblatex bbl format version 2.9 $
+% $ biblatex bbl format version 2.8 $
 % Do not modify the above lines!
 %
 % This is an auxiliary file used by the 'biblatex' package.
@@ -18,7 +18,7 @@
 
 
 \refsection{0}
-  \datalist[entry]{none/global//global/global}
+  \sortlist[entry]{none/global/}
     \entry{fliess:95}{article}{}
       \name{author}{4}{}{%
         {{hash=317946063f9514324f00f50aef9d5417}{%
@@ -44,12 +44,10 @@
       }
       \strng{namehash}{942552e98d830ec08f9f8d5f68c30748}
       \strng{fullhash}{7eceffd44c58b854bcdbacf9447b0b32}
-      \strng{bibnamehash}{942552e98d830ec08f9f8d5f68c30748}
-      \strng{authorbibnamehash}{942552e98d830ec08f9f8d5f68c30748}
       \strng{authornamehash}{942552e98d830ec08f9f8d5f68c30748}
       \strng{authorfullhash}{7eceffd44c58b854bcdbacf9447b0b32}
       \field{sortinit}{1}
-      \field{sortinithash}{27a2bc5dfb9ed0a0422134d636544b5d}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Int. J. Control}
@@ -59,7 +57,7 @@
       \field{pages}{1327\bibrangedash 1361}
       \range{pages}{35}
     \endentry
-  \enddatalist
+  \endsortlist
 \endrefsection
 \endinput
 

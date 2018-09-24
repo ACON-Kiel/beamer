@@ -52,7 +52,7 @@
   }
   \renewcommand{\contactline}{\structure{Kontaktdaten}}
   \renewcommand{\footchair}{Lehrstuhl f\"ur Regelungstechnik}
-  \renewcommand{\footuniv}{Christian--Albrechts--Universit\"at Kiel}
+  \renewcommand{\footuniv}{Christian--Albrechts--Universit\"at zu Kiel}
   \renewcommand{\mypage}{Seite}
   \renewcommand{\cauLogo}{cau_de}
   \setboolean{@usegerman}{true}
@@ -62,7 +62,7 @@
   \renewcommand{\aconaddress}{}
   \renewcommand{\contactline}{\structure{Kontaktdaten}}
   \renewcommand{\footchair}{Lehrstuhl f\"ur Regelungstechnik}
-  \renewcommand{\footuniv}{Christian--Albrechts--Universit\"at Kiel}
+  \renewcommand{\footuniv}{Christian--Albrechts--Universit\"at zu Kiel}
   \renewcommand{\mypage}{Seite}
   \setboolean{@usegerman}{true}
 }
@@ -142,7 +142,7 @@
 
 % Source: https://tex.stackexchange.com/questions/45406/footnotes-disappear-when-using-overlays-in-beamer
 
-\RequirePackage[style=numeric-comp,citetracker=true,sorting=none]{biblatex}
+\RequirePackage[backend=biber,style=numeric-comp,citetracker=true,sorting=none]{biblatex}
 
 \newtoggle{cbx@togcite}
 % Citation number in brackets
@@ -211,8 +211,10 @@
         dp=0cm,right]{titletext}
         {\flushleft
           \usebeamerfont{title}{\inserttitle}}
-        {\flushleft
-          \usebeamerfont{subtitle}{\insertsubtitle}}
+        \ifx \insertsubtitle \empty \else
+          {\flushleft
+            \usebeamerfont{subtitle}{\insertsubtitle}}
+        \fi
       \end{beamercolorbox}
       % 
     }
