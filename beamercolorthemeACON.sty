@@ -4,29 +4,43 @@
 % Version history:
 % v0 ... 2016/12/09
 
-\definecolor{rtblue}{rgb}{0.15,0.15,0.7}
+\definecolor{rtblue}{rgb}{0,0.2392,0.66078}%{0.15,0.15,0.7}
 \definecolor{lskyblue}{rgb}{0.529412,0.807843,0.980392}
 \definecolor{rtgray}{rgb}{0.582,0.582,0.582}
 \definecolor{lrtgray}{rgb}{0.782,0.782,0.782}
+\definecolor{drtgray}{rgb}{0.45,0.45,0.45}
 % \definecolor{rtred}{rgb}{0.73,0.07,0.17}
 \definecolor{rtred}{rgb}{0.8,0,0}
+\definecolor{drtred}{rgb}{0.5,0,0}
 \definecolor{rtviolet}{rgb}{0.9,0.0,0.9}
-\definecolor{rtgreen}{rgb}{0.0,0.8,0.0}
-\definecolor{rtorange}{rgb}{1,0.6,0}
+\definecolor{rtgreen}{rgb}{0.0,0.7,0.0}
+\definecolor{rtorange}{rgb}{1,0.5,0}
+\definecolor{rtpeach}{rgb}{0.933,0.796,0.678}
 \definecolor{rtwhite}{rgb}{1,1,1}
 \definecolor{rtlightgreen}{rgb}{0.615686274509804,0.870588235294118,0.403921568627451}
 %
+
+% Egyptian color tetradic color palette
+%\definecolor{rtblue}{rgb}{0.0627451,0.203922,0.65098}
+%\definecolor{rtgreen}{rgb}{0.0627451,0.65098,0.509804}
+%\definecolor{rtred}{rgb}{0.65098,0.06274510.203922}
+%\definecolor{rtbrown}{rgb}{0.65098,0.509804,0.0627451}
+
+
 \newcommand\orange[1]{\textcolor{rtorange}{#1}}
 \newcommand\blue[1]{\textcolor{rtblue}{#1}}
 \newcommand\red[1]{\textcolor{rtred}{#1}}
+\newcommand\dred[1]{\textcolor{drtred}{#1}}
 \newcommand\violet[1]{\textcolor{rtviolet}{#1}}
 \newcommand\green[1]{\textcolor{rtgreen}{#1}}
 \newcommand\lgreen[1]{\textcolor{rtlightgreen}{#1}}
 \newcommand\gray[1]{\textcolor{rtgray}{#1}}
 \newcommand\lgray[1]{\textcolor{lrtgray}{#1}}
+\newcommand\dgray[1]{\textcolor{drtgray}{#1}}
 \newcommand\white[1]{\textcolor{rtwhite}{#1}}
 
 \setbeamercolor{titlehead}{bg=rtblue,fg=white}
+\setbeamercolor{titletext}{bg=white,fg=rtblue}
 \setbeamercolor{titlefoot}{bg=rtgray,fg=white}
 \setbeamercolor{titlecontent}{bg=white,fg=black}
 
@@ -34,6 +48,7 @@
 
 % color definition as in beamerouterthemeinfolines.sty
 \setbeamercolor{acon@ftcolor}{parent=palette secondary}
+%\setbeamercolor{acon@ftcolor}{bg=white}
 
 \setbeamercolor{frametitle}{fg=rtblue}
 %\setbeamerfont{framesubtitle}{series=\bfseries,size={\fontsize{10}{10}}}
@@ -52,6 +67,11 @@
 \setbeamercolor{title in foot}{fg=rtblue}
 \setbeamercolor{date in head/foot}{fg=Brown}
 \setbeamercolor{normal text}{fg=black} 
+
+% Sectioning
+%\setbeamercolor{part title}{fg=white,bg=rtblue}
+%\setbeamercolor{section name}{fg=rtblue}
+%\setbeamercolor{section title}{fg=white,bg=rtblue}
 
 %Blocks and boxes
 \setbeamercolor{block title}{

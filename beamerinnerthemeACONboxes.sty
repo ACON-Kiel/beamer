@@ -9,21 +9,21 @@
 % The default box color.  The user is expected to override this.
 \setbeamercolor{aconboxes}{bg=structure!15!normal text.bg,fg=black}
 
-\newenvironment{displaybox}[1]
+\newenvironment{displaybox}[2][aconboxes]
 {
   \centerline\bgroup\hfill
-  \begin{beamerboxesrounded}[lower=aconboxes,shadow=false,width=#1]{}
+  \begin{beamerboxesrounded}[lower=#1,shadow=false,width=#2]{}
 }
 {
   \end{beamerboxesrounded}\hfill\egroup
 }
 
-\newenvironment{inlinebox}[1]
+\newenvironment{inlinebox}[2][aconboxes]
 {
   \newbox\@mybox
   \newdimen\@myboxht
   \setbox\@mybox\hbox\bgroup%
-  \begin{beamerboxesrounded}[lower=aconboxes,shadow=false,width=#1]{}
+  \begin{beamerboxesrounded}[lower=#1,shadow=false,width=#2]{}
     %\abovedisplayskip=-1ex
 }
 {
@@ -32,12 +32,12 @@
   \raisebox{-0.25\@myboxht}{\usebox\@mybox}%\hspace{2pt}
 }
 
-\newenvironment{alignbox}[1]
+\newenvironment{alignbox}[2][aconboxes]
 {
   \newbox\@mybox
   \newdimen\@myboxht
   \setbox\@mybox\hbox\bgroup%
-    \begin{beamerboxesrounded}[lower=aconboxes,shadow=false,width=#1]{}
+    \begin{beamerboxesrounded}[lower=#1,shadow=false,width=#2]{}
       \abovedisplayskip=-1ex
 }
 {
@@ -46,58 +46,19 @@
   \raisebox{-0.25\@myboxht}{\usebox\@mybox}\hspace{2pt}
 }
 
-% From metropolis theme
-%
-% \newlength{\ACON@parskip}
-% \setlength{\ACON@parskip}{0.5em}
-% \setlength{\parskip}{\ACON@parskip}
-% %\linespread{1.15}
-% %
-% \newlength{\ACON@blocksep}
-% \newlength{\ACON@blockadjust}
-% \setlength{\ACON@blocksep}{0.75ex}
-% \setlength{\ACON@blockadjust}{0.25ex}
-% \providecommand{\ACON@strut}{%
-%   \vphantom{ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz()}%
+% \newenvironment{mybox}[4][aconboxes]
+% {
+%   \newbox\@mybox
+%   \newdimen\@myboxht
+%   \setbox\@mybox\hbox\bgroup%
+%     \begin{beamerboxesrounded}[lower=#1,shadow=false,width=#2]{}
+%       \abovedisplayskip=-1ex
 % }
-% \newcommand{\ACON@block}[1]{
-%   \par\vskip\medskipamount%
-%   \setlength{\parskip}{0pt}
-%   \ifbeamercolorempty[bg]{block title#1}{%
-%     \begin{beamercolorbox}[rightskip=0pt plus 4em]{block title#1}}{%
-%   \ifbeamercolorempty[bg]{block title}{%
-%     \begin{beamercolorbox}[rightskip=0pt plus 4em]{block title#1}%
-%   }%
-%   {%
-%     \begin{beamercolorbox}[
-%       sep=\dimexpr\ACON@blocksep-\ACON@blockadjust\relax,
-%       leftskip=\ACON@blockadjust,
-%       rightskip=\dimexpr\ACON@blockadjust plus 4em\relax
-%     ]{block title#1}%
-%   }}%
-%       \usebeamerfont*{block title#1}%
-%       \ACON@strut%
-%       \insertblocktitle%
-%       \ACON@strut%
-%   \end{beamercolorbox}%
-%   \nointerlineskip%
-%   \ifbeamercolorempty[bg]{block body#1}{%
-%     \begin{beamercolorbox}[vmode]{block body#1}}{
-%   \ifbeamercolorempty[bg]{block body}{%
-%     \begin{beamercolorbox}[vmode]{block body#1}%
-%   }{%
-%     \begin{beamercolorbox}[sep=\ACON@blocksep, vmode]{block body#1}%
-%     \vspace{-\ACON@parskip}
-%   }}%
-%       \usebeamerfont{block body#1}%
-%       \setlength{\parskip}{\ACON@parskip}%
+% {
+%   \end{beamerboxesrounded}\egroup
+%   \@myboxht\ht\@mybox
+%   \raisebox{-0.25\@myboxht}{\usebox\@mybox}\hspace{2pt}
 % }
-% \setbeamertemplate{block begin}{\ACON@block{}}
-% \setbeamertemplate{block alerted begin}{\ACON@block{ alerted}}
-% \setbeamertemplate{block example begin}{\ACON@block{ example}}
-% \setbeamertemplate{block end}{\end{beamercolorbox}\vspace*{0.2ex}}
-% \setbeamertemplate{block alerted end}{\end{beamercolorbox}\vspace*{0.2ex}}
-% \setbeamertemplate{block example end}{\end{beamercolorbox}\vspace*{0.2ex}}
 
 
 \mode<all>
