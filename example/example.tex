@@ -5,7 +5,7 @@
 % v0 ... 2016/12/09
 
 \documentclass[10pt,t,aspectratio=1610]{beamer}
-%\usetheme[german]{ACON} %or 
+%\usetheme[german]{ACON} %or
 \usetheme{ACON}
 
 % We define  a command \sfcite which enables to add citations but to
@@ -22,9 +22,11 @@
                           %are used
 \usepackage{curve2e}
 
+\graphicspath{{../figures/}}
+
 % =======================
 
-% If the title exceeds two lines then adjust the title font size 
+% If the title exceeds two lines then adjust the title font size
 %\setbeamerfont{title}{series=\bfseries,size={\fontsize{18}{18}}}
 
 % =======================
@@ -58,7 +60,7 @@
     \item \texttt{\textbackslash bEmph} provides \bEmph{this text}
     \item \texttt{\textbackslash btEmph} provides \btEmph{this text}
     \end{itemize}
-  \end{itemize}  
+  \end{itemize}
 \end{frame}
 
 % =======================
@@ -69,18 +71,18 @@
 
 \begin{verbatim}
 \begin{displaybox}{0.995\textwidth}
-  Example 1: use 0.995\textbackslash textwidth for full width box  
+  Example 1: use 0.995\textbackslash textwidth for full width box
 \end{displaybox}
 \end{verbatim}
-  
+
   \begin{displaybox}{0.995\textwidth}
-    % 
-    Example 1: use 0.995\textbackslash textwidth for full width box 
-    % 
+    %
+    Example 1: use 0.995\textbackslash textwidth for full width box
+    %
   \end{displaybox}
-  
+
 \begin{verbatim}
-\begin{alignbox}{0.75\textwidth} 
+\begin{alignbox}{0.75\textwidth}
   Use for math related environments including text line (blank line below)
 
   \begin{align}
@@ -88,10 +90,10 @@
   \end{align}
 \end{alignbox}
 \end{verbatim}
-  
+
   \begin{alignbox}{0.75\textwidth}
     Use for math related environments including text line (blank line below)
-    
+
     \begin{align}
       y = x^2
     \end{align}
@@ -104,15 +106,15 @@
 \begin{frame}[fragile,fragile]
   \frametitle{Boxes}
   \framesubtitle{Some examples}
-  
+
 \begin{verbatim}
-\begin{alignbox}{0.5\textwidth} 
+\begin{alignbox}{0.5\textwidth}
   \begin{align}
     y = x^2
   \end{align}
 \end{alignbox}
 \end{verbatim}
-  
+
   \begin{alignbox}{0.5\textwidth}
     \begin{align}
       y = x^2
@@ -149,18 +151,18 @@ This shows the use of an \texttt{inlinebox} environment
       Ein System $\dot{\xv[]}=\bs{f}(\xv[],\uv[])$ wird \tEmph{differenziell
         flach} genannt, wenn ein so genannter \tEmph{flacher Ausgang}
       $\yv[]=\bs{h}(\xv[],\uv[])$, $\dim\yv[]=\dim\uv[]$ existiert, so dass \\[1ex]
-      % 
-      \phantom{-----} 
+      %
+      \phantom{-----}
       $\xv =
       \bs{\theta_{\xv[]}}\Bigl(\yv[],\dot{\yv[]},\ldots,\yv[^{(\beta)}]\Bigr)$,
-      \qquad 
+      \qquad
       $\uv =
       \bs{\theta_{\uv[]}}\Bigl(\yv[],\dot{\yv[]},\ldots,\yv[^{(\beta+1)}]\Bigr)$.
     \end{inlinebox}
     %
     $\Rightarrow$ \tEmph{Differenzielle Zustands-- und
       Eingangsparametrierung} \pause\\[-1ex]
-    % 
+    %
     \unitlength0.5cm
     \begin{picture}(26,4)(0,1.25)
       \linethickness{1.25pt}
@@ -169,7 +171,7 @@ This shows the use of an \texttt{inlinebox} environment
         \put(13,1.5){\kasten}
         \put(13.75,2.75){System}
         \put(17,3){\pfeil}
-        % 
+        %
         \put(17.5,3.5){$\xv[\cts]\to\cEmph{\xvd[\cts]=\bs{\theta_{\xv[]}}\bigl(\yvd[],\dot{\yvd[]},...\bigr)}$}
       }
       %
@@ -184,7 +186,7 @@ This shows the use of an \texttt{inlinebox} environment
     $\Rightarrow$ Methodische \"Ubertragung auf
     \tEmph{verteilt--parametrische Systeme}
   \end{itemize}
-  % 
+  %
 \end{frame}
 
 % =======================
