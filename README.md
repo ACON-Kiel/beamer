@@ -31,3 +31,5 @@ for presentations from the Chair of Automatic Control at the Kiel University in 
 	* `\usetheme[german]{ACON}` for the german version
 
   
+### Test/Example
+In order to test the example switch 
